@@ -11,14 +11,14 @@ function App() {
           alt="logo"
         />
         <p>
-          Magazine<code>by Marina & Emma & .......</code>.
+        <code>Magazine by Marina & Emma & .......</code>.
         </p>
         <a
           className="App-link"
           href="https://reactjs.org"
           target="_blank"
           rel="noopener noreferrer">
-          Enter here{' '}
+          Enter here
         </a>
       </header>
     </div>
