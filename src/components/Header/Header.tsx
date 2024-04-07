@@ -1,9 +1,13 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import { Tab, Tabs } from '@mui/material';
+import { Tab, Tabs} from '@mui/material';
+
+
 import { categories } from '../../mocks/categories';
 import './Header.css';
+import SearchBar from './SearchBar';
+
 
 const Header = () => {
   const pathname = useLocation();
@@ -23,6 +27,8 @@ const Header = () => {
           );
         })}
       </Tabs>
+ <SearchBar />
+     
     </div>
   );
 };

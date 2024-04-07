@@ -27,13 +27,13 @@ const ArticlesList = ({
   };
 
   return (
-    <div style={{marginLeft: '2rem'}}>
+    <div >
       <h1>{title}</h1>
       {articles.map((article, index) => (
         <Card
           variant="outlined"
           key={index}
-          sx={{ p: 2, my: 3, maxWidth: '80vw' }}>
+          sx={{ p: 2, my: 3}}>
           <CardMedia
             component="img"
             alt="green iguana"
