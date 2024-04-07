@@ -18,7 +18,6 @@ type Props = {
 const ArticlesList = ({
   articles, title
 }: Props) => {
-  console.log(articles);
   const [expandedId, setExpandedId] = useState(-1);
   const [buttonText, setButtonText] = useState('Read more');
   const handleReadMore = (i: number) => {

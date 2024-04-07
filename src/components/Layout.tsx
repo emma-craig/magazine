@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Footer from './Footer/Footer';
-import ArticlesList from './../Articles/ArticlesList';
-import { articles } from './../mocks/article-list';
+import ArticlesList from './Articles/ArticlesList';
+import ArticlesContext from '../context/ArticlesContext';
 
 const Layout = ({category}: {category: string}) => {
-  const currArticles = articles.filter((cat) => cat.category === category);
+  const { articles } = useContext(ArticlesContext);
+
+  const currArticles = articles.filter((cat: any) => cat.category === category);
   return (
     <>
       {currArticles && (

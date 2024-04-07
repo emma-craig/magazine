@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Autocomplete, IconButton, InputAdornment, TextField } from "@mui/material"
-import { articles } from './../../mocks/article-list';
 import SearchIcon from '@mui/icons-material/Search';
+import ArticlesContext from '../../context/ArticlesContext';
 
 const SearchBar = () => {
+    const { articles } = useContext(ArticlesContext);
+
     return (
         <Autocomplete
         freeSolo
         id="search-input"
         disableClearable
-        options={articles.map((option) => option.title)}
+        options={articles.map((option: any) => option.title)}
         sx={{width: '200px'}}
         renderInput={(params) => (
           <TextField
