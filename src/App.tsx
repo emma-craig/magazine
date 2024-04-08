@@ -9,8 +9,7 @@ import ArticlesContext from './context/ArticlesContext';
 
 const App = () => {
   const {data} = useFetchArticles()
-  console.log(useFetchArticles());
-  console.log(data);
+
   return (
 
     <Router>

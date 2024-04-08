@@ -1,16 +1,15 @@
 import React, { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import { Tab, Tabs} from '@mui/material';
-
+import { Tab, Tabs } from '@mui/material';
 
 import { categories } from '../../mocks/categories';
 import './Header.css';
 import SearchBar from './SearchBar';
 
-
 const Header = () => {
-  const pathname = useLocation();
+  const { pathname } = useLocation();
+  console.log(pathname);
   return (
     <div className="header">
       <Tabs value={pathname}>
@@ -19,15 +18,14 @@ const Header = () => {
             <Tab
               key={index}
               label={category.title}
-              value={pathname}
+              value={`/${category.slug}`}
               to={`/${category.slug}`}
               component={Link}
             />
           );
         })}
       </Tabs>
- <SearchBar />
-     
+      <SearchBar />
     </div>
   );
 };
