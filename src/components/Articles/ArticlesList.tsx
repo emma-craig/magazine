@@ -15,9 +15,7 @@ type Props = {
   className?: string;
 };
 
-const ArticlesList = ({
-  articles, title
-}: Props) => {
+const ArticlesList = ({ articles, title }: Props) => {
   const [expandedId, setExpandedId] = useState(-1);
   const [buttonText, setButtonText] = useState('Read more');
   const handleReadMore = (i: number) => {
@@ -26,13 +24,13 @@ const ArticlesList = ({
   };
 
   return (
-    <div >
+    <div>
       <h1>{title}</h1>
       {articles.map((article, index) => (
         <Card
           variant="outlined"
           key={index}
-          sx={{ p: 2, my: 3}}>
+          sx={{ p: 2, my: 3 }}>
           <CardMedia
             component="img"
             alt="green iguana"
@@ -60,10 +58,6 @@ const ArticlesList = ({
           </CardActions>
         </Card>
       ))}
-      <hr />
-      <hr />
-      <hr />
-
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import { Tab, Tabs} from '@mui/material';
@@ -11,7 +11,6 @@ import SearchBar from './SearchBar';
 
 const Header = () => {
   const pathname = useLocation();
-
   return (
     <div className="header">
       <Tabs value={pathname}>

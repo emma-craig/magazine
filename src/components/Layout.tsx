@@ -4,9 +4,9 @@ import ArticlesList from './Articles/ArticlesList';
 import ArticlesContext from '../context/ArticlesContext';
 
 const Layout = ({category}: {category: string}) => {
-  const { articles } = useContext(ArticlesContext);
+  const  data  = useContext(ArticlesContext);
 
-  const currArticles = articles.filter((cat: any) => cat.category === category);
+  const currArticles = data.filter((cat: any) => cat.category === category);
   return (
     <>
       {currArticles && (

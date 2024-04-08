@@ -9,10 +9,13 @@ import ArticlesContext from './context/ArticlesContext';
 
 const App = () => {
   const {data} = useFetchArticles()
+  console.log(useFetchArticles());
+  console.log(data);
   return (
 
-  <ArticlesContext.Provider value={data}>
     <Router>
+    {data &&  <ArticlesContext.Provider value={data}>
+
       <Header></Header>
       <Routes>
         <Route
@@ -36,9 +39,8 @@ const App = () => {
           element={<Layout category="life" />}
         />
       </Routes>
-      <Footer />
+      <Footer /></ArticlesContext.Provider>}
     </Router>
-    </ArticlesContext.Provider>
  
   );
 };
