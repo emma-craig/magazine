@@ -1,0 +1,25 @@
+{
+  "name": "magazine-server",
+  "version": "1.0.0",
+  "description": "back end for pepper magazine app",
+  "main": "src/index.ts",
+  "repository": "https://github.com/emma-craig/magazine.git",
+  "author": "Emma Craig <emma.ryal@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^5.12.1",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.12.5",
+    "cors": "^2.8.5",
+    "create-express-with-typescript": "^2.0.1",
+    "express": "^4.19.2",
+    "nodemon": "^3.1.0",
+    "prisma": "^5.12.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.4"
+  },
+  "scripts": {
+    "start": "npx nodemon"
+  }
+}
