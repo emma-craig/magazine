@@ -10,7 +10,11 @@ import ArticlesContext from '../../context/ArticlesContext';
 
 const SearchBar = () => {
   const data = useContext(ArticlesContext);
-
+  const uniqueOptionsList = data
+    .map((option: any) => option.title)
+    .filter(
+      (value: any, index: number, self: any) => self.indexOf(value) === index
+    );
   return (
     <>
       {data && (
@@ -18,8 +22,8 @@ const SearchBar = () => {
           freeSolo
           id="search-input"
           disableClearable
-          options={data.map((option: any) => option.title)}
-          sx={{ width: '200px' }}
+          options={uniqueOptionsList}
+          sx={{ width: '300px' }}
           renderInput={(params) => (
             <TextField
               {...params}

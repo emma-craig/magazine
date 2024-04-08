@@ -11,7 +11,7 @@ const SocialUrls = () => {
     const {instagram, facebook, youtube, linkedin } = SOCIAL_USERNAMES
   
     return (
-      <ul >
+      <ul className="social-media-list">
         {instagram && (
           <li className="px-4">
             <Link
