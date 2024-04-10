@@ -15,5 +15,5 @@
     "noEmit": true,
     "jsx": "react"
   },
-  "include": ["magazine-client/src", "magazine-client/custom.d.ts"]
+  "include": ["src", "custom.d.ts"]
 }

@@ -35,7 +35,7 @@ const ArticlesList = ({ articles, title }: Props) => {
             component="img"
             alt="green iguana"
             height="140"
-            image={article.urls.image}
+            image={article.image}
           />
           <CardContent>
             <Typography variant="h5">{article.title}</Typography>

@@ -9,8 +9,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import ArticlesContext from '../../context/ArticlesContext';
 
 const SearchBar = () => {
-  const data = useContext(ArticlesContext);
-  const uniqueOptionsList = data
+  const  data  = useContext(ArticlesContext);
+  const uniqueOptionsList = data && data
     .map((option: any) => option.title)
     .filter(
       (value: any, index: number, self: any) => self.indexOf(value) === index

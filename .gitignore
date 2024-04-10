@@ -2,7 +2,7 @@
 
 # dependencies
 /magazine-client/node_modules
-/magazine-server/node_modules
+/magazine-api/node_modules
 
 /.pnp
 .pnp.js
