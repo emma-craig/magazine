@@ -9,26 +9,27 @@ const Layout = ({category}: {category: string}) => {
   return (
     <>
       {currArticles && (
-        <>
-          <ArticlesList
-            articles={currArticles.slice(5, 10)}
-            title="Recent"
-          />
-          <div>
-            <ArticlesList
-              articles={currArticles.slice(0, 5)}
-              title="Featured"
-            />
-            <ArticlesList
-              articles={currArticles.slice(6, 11)}
-              title="Popular"
-            />
-          </div>
-          <ArticlesList
-            articles={currArticles.slice(10, 15)}
-            title="More articles"
-          />
-        </>
+        <ArticlesList articles={currArticles} />
+        // <>
+        //   <ArticlesList
+        //     articles={currArticles.slice(5, 10)}
+        //     title="Recent"
+        //   />
+        //   <div>
+        //     <ArticlesList
+        //       articles={currArticles.slice(0, 5)}
+        //       title="Featured"
+        //     />
+        //     <ArticlesList
+        //       articles={currArticles.slice(6, 11)}
+        //       title="Popular"
+        //     />
+        //   </div>
+        //   <ArticlesList
+        //     articles={currArticles.slice(10, 15)}
+        //     title="More articles"
+        //   />
+        // </>
       )}
 
       <Footer />

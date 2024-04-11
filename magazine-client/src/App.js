@@ -11,7 +11,7 @@ const App = () => {
   const {data} = useFetchArticles()
 
   return (
-
+<div class = 'app'>
     <Router>
     {data &&  <ArticlesContext.Provider value={data}>
 
@@ -39,7 +39,7 @@ const App = () => {
         />
       </Routes>
       <Footer /></ArticlesContext.Provider>}
-    </Router>
+    </Router></div>
  
   );
 };

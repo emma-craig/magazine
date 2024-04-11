@@ -6,11 +6,12 @@ import {
   CardContent,
   CardMedia,
   Collapse,
+  Grid,
   Typography,
 } from '@mui/material';
 type Props = {
   articles: any[];
-  title: string;
+  title?: string;
   variant?: 'default' | 'lists' | 'top';
   className?: string;
 };
@@ -24,41 +25,55 @@ const ArticlesList = ({ articles, title }: Props) => {
   };
 
   return (
-    <div>
+    <>
       <h1>{title}</h1>
-      {articles.map((article, index) => (
-        <Card
-          variant="outlined"
-          key={index}
-          sx={{ p: 2, my: 3 }}>
-          <CardMedia
-            component="img"
-            alt="green iguana"
-            height="140"
-            image={article.image}
-          />
-          <CardContent>
-            <Typography variant="h5">{article.title}</Typography>
-            <Typography variant="body1">{article.text}</Typography>
-          </CardContent>
-          <Collapse
-            in={expandedId === index}
-            timeout="auto"
-            unmountOnExit>
-            <CardContent>
-              <div>{article.fulltext}</div>
-            </CardContent>
-          </Collapse>
-          <CardActions>
-            <Button
-              size="small"
-              onClick={() => handleReadMore(index)}>
-              {buttonText}
-            </Button>
-          </CardActions>
-        </Card>
-      ))}
-    </div>
+      <Grid
+        container
+        spacing={2}>
+        {articles.map((article, index) => (
+          <Grid
+            item
+            sm={12}
+            md={3}>
+            <Card
+              variant="outlined"
+              key={index}
+              sx={{ p: 2, my: 3 }}>
+              <CardMedia
+                component="img"
+                alt={`picture of ${article.title}`}
+                height="200"
+                image={article.image}
+              />
+              <CardContent>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="div">
+                  {article.title}
+                </Typography>
+                <Typography variant="body1">{article.text}</Typography>
+              </CardContent>
+              <Collapse
+                in={expandedId === index}
+                timeout="auto"
+                unmountOnExit>
+                <CardContent>
+                  <div>{article.fulltext}</div>
+                </CardContent>
+              </Collapse>
+              <CardActions>
+                <Button
+                  size="small"
+                  onClick={() => handleReadMore(index)}>
+                  {buttonText}
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+    </>
   );
 };
 
