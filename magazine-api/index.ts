@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import { ObjectId } from 'mongodb';
+require("dotenv").config({ path: ".env" })
 
 // EXPRESS SERVER INSTANCE
 const app = express();
@@ -13,7 +14,7 @@ app.listen(5000, () => {
 // MONGOOSE CONNECTION
 mongoose
   .connect(
-    'mongodb+srv://emmacraigjennens:YkSaJ4XwwDSxnfXk@peppermagazine.m8qt2gm.mongodb.net/pepper_magazine?retryWrites=true&w=majority&appName=PepperMagazine'
+    process.env.REACT_APP_DATABASE_URL as string
   )
   .then(() => console.log(`Connected to database`))
   .catch((err) => console.error(err));
