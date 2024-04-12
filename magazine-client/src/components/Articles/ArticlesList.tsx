@@ -44,7 +44,7 @@ const ArticlesList = ({ articles, title }: Props) => {
                 component="img"
                 alt={`picture of ${article.title}`}
                 height="200"
-                image={article.image}
+                image={`${article.image} ?? https://source.unsplash.com/B4TjXnI0Y2c`}
               />
               <CardContent>
                 <Typography
