@@ -34,7 +34,8 @@ const ArticlesList = ({ articles, title }: Props) => {
           <Grid
             item
             sm={12}
-            md={3}>
+            md={4}    xl={3}>
+           
             <Card
               variant="outlined"
               key={index}
