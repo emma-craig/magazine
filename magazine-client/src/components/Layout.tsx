@@ -32,7 +32,6 @@ const Layout = ({category}: {category: string}) => {
         // </>
       )}
 
-      <Footer />
     </>
   );
 };

@@ -1,13 +1,14 @@
 import React from 'react';
 import SocialUrls from './SocialUrls';
 import './Footer.css'
+import { Box } from '@mui/system';
 
 
 const Footer = () => {
   return (
-    <div className='footer'>
+    <Box className='footer' sx={{backgroundColor: 'primary.main' , marginX: '-3rem'}}>
       <SocialUrls />
-    </div>
+    </Box>
   );
 };
 

@@ -38,7 +38,7 @@ const ArticlesList = ({ articles, title }: Props) => {
             <Card
               variant="outlined"
               key={index}
-              sx={{ p: 2, my: 3 }}>
+              sx={{ p: 2, m:3 }}>
               <CardMedia
                 component="img"
                 alt={`picture of ${article.title}`}
