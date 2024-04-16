@@ -18,11 +18,11 @@ import ArticlesContext from '../contexts/ArticlesContext';
 import Stack from '@mui/material/Stack';
 import { CurrentUserContext } from '../contexts/UserContext';
 
-const settings = ['Login', 'Create', 'Edit', 'Delete'];
+const settings = ['Login', 'Dashboard'];
 
 const Header = () => {
   const data = useContext(ArticlesContext);
-  const currUser = useContext(CurrentUserContext)
+  const currUser = useContext(CurrentUserContext);
   console.log(currUser);
   const categories = data && getCategories(data);
 
@@ -145,7 +145,7 @@ const Header = () => {
               </Box>
 
               <Box sx={{ flexGrow: 0 }}>
-                <Tooltip title="Open settings">
+                <Tooltip title="Open user settings">
                   <IconButton
                     onClick={handleOpenUserMenu}
                     sx={{ p: 0 }}>
@@ -180,21 +180,21 @@ const Header = () => {
                       </MenuItem>
                     </Link>
                   ))}
-                </Menu>
+                </Menu>{' '}
+                {currUser && (
+                  <Typography
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'flex-end',
+                      variant: 'caption',
+                    }}>
+                    {currUser}
+                  </Typography>
+                )}
               </Box>
             </Toolbar>
           </Container>
         </AppBar>
-        {currUser && (
-          <Typography
-            sx={{
-              display: 'flex',
-              justifyContent: 'flex-end',
-              variant: 'caption',
-            }}>
-            Logged in as: {currUser}
-          </Typography>
-        )}{' '}
       </Stack>
     )
   );

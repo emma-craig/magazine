@@ -1,24 +1,125 @@
-import React from 'react';
-import { Button } from '@mui/material';
+import React, { useContext } from 'react';
+import {
+  Button,
+  Paper,
+  Stack,
+  Typography,
+  IconButton,
+  TableContainer,
+  Table,
+  TableCell,
+  TableBody,
+  TableRow,
+  TableHead,
+} from '@mui/material';
 import { logout } from '../../utils/authUser';
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import { AddSharp, DeleteSharp } from '@mui/icons-material';
+import ArticlesContext from './../../contexts/ArticlesContext';
+import EditIcon from '@mui/icons-material/Edit';
+import LogoutIcon from '@mui/icons-material/Logout';
 const Dashboard = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const onLogout = () => {
     logout();
-    navigate('./../login')
+    navigate('./../login');
   };
+  const handleDeleteArticle = (id) => {
+    console.log('article deleted');
+  };
+  const handleEditArticle = (id) => {
+    console.log('article opened and ready to edit');
+  };
+  const data = useContext(ArticlesContext);
+
   return (
-    <div>
+    <Paper
+      square
+      sx={{ p: 4 }}>
+      <Stack
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center">
+        <Stack gap={0.75}>
+          {/* <Typography
+            variant="overline"
+            sx={{ color: 'text.secondary' }}>
+            Articles Dashboard
+          </Typography> */}
+          <Button
+            variant="outlined"
+            endIcon={<AddSharp />}
+            onClick={() => navigate('./../create')}>
+            UPLOAD NEW ARTICLE
+          </Button>
+        </Stack>
 
-<div>here do a table of the articles with an add button at the top and edit / delete on each one.</div>
-
-      <Button onClick = {() => navigate('./../create')}>UPLOAD NEW ARTICLE</Button>
-      <Button onClick = {() => navigate('./../edit')}>EDIT AN ARTICLE</Button>
-      <Button onClick = {() => navigate('./../delete')}>DELETE ARTICLE</Button>
-
-      <Button onClick={onLogout}>LOGOUT</Button>
-    </div>
+        <Button
+          variant="outlined"
+          endIcon={<LogoutIcon />}
+          onClick={onLogout}>
+          LOGOUT
+        </Button>
+      </Stack>
+      <TableContainer sx={{ mt: 4 }}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Title</TableCell>
+              <TableCell>Date Added</TableCell>
+              <TableCell></TableCell>
+              <TableCell />
+              <TableCell />
+              <TableCell />
+              <TableCell />
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {!data.length && (
+              <TableRow>
+                <TableCell colSpan={4}>
+                  <Typography
+                    align="center"
+                    sx={{ m: 3, color: 'text.secondary' }}>
+                    No articles to display
+                  </Typography>
+                </TableCell>
+              </TableRow>
+            )}
+            {data.map((item, index) => (
+              <TableRow
+                key={index}
+                sx={{
+                  '&:last-child td, &:last-child th': { border: 0 },
+                }}>
+                <TableCell>{item.title}</TableCell> <TableCell />
+                <TableCell />
+                <TableCell />
+                <TableCell />
+                <TableCell>
+                  <IconButton
+                    aria-label="edit article button"
+                    onClick={() => {
+                      handleEditArticle(1);
+                    }}>
+                    <EditIcon />
+                  </IconButton>
+                </TableCell>
+                <TableCell>
+                  <IconButton
+                    aria-label="remove article button"
+                    onClick={() => {
+                      handleDeleteArticle(1);
+                    }}>
+                    <DeleteSharp />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Paper>
   );
 };
 export default Dashboard;
