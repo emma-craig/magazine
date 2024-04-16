@@ -14,13 +14,16 @@ import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 import getCategories from './../utils/getCategories';
 import { useContext } from 'react';
-import ArticlesContext from '../context/ArticlesContext';
+import ArticlesContext from '../contexts/ArticlesContext';
+import Stack from '@mui/material/Stack';
+import { CurrentUserContext } from '../contexts/UserContext';
 
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Login', 'Create', 'Edit', 'Delete'];
 
-const ResponsiveAppBar = () => {
+const Header = () => {
   const data = useContext(ArticlesContext);
-
+  const currUser = useContext(CurrentUserContext)
+  console.log(currUser);
   const categories = data && getCategories(data);
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -47,139 +50,153 @@ const ResponsiveAppBar = () => {
 
   return (
     categories && (
-      <AppBar position="static">
-        <Container maxWidth="xl">
-          <Toolbar disableGutters>
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href=""
-              sx={{
-                mr: 2,
-                display: { xs: 'none', md: 'flex' },
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: 'inherit',
-                textDecoration: 'none',
-              }}>
-              PEPPER
-            </Typography>
-
-            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenNavMenu}
-                color="inherit">
-                <MenuIcon />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorElNav}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'left',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'left',
-                }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
+      <Stack>
+        <AppBar position="static">
+          <Container maxWidth="xl">
+            <Toolbar disableGutters>
+              <Typography
+                variant="h6"
+                noWrap
+                component="a"
+                href=""
                 sx={{
-                  display: { xs: 'block', md: 'none' },
+                  mr: 2,
+                  display: { xs: 'none', md: 'flex' },
+                  fontFamily: 'monospace',
+                  fontWeight: 700,
+                  letterSpacing: '.3rem',
+                  color: 'inherit',
+                  textDecoration: 'none',
                 }}>
-                {categories.map((category: any, index: number) => (
-                  <Link
-                    to={`/${category}`}
-                    style={{ textDecoration: 'none' }}>
-                    <MenuItem
-                      key={index}
-                      onClick={handleCloseNavMenu}>
-                      <Typography textAlign="center">{category}</Typography>
-                    </MenuItem>
-                  </Link>
-                ))}
-              </Menu>
-            </Box>
-            <Typography
-              variant="h5"
-              noWrap
-              component="a"
-              href="#app-bar-with-responsive-menu"
-              sx={{
-                mr: 2,
-                display: { xs: 'flex', md: 'none' },
-                flexGrow: 1,
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: 'inherit',
-                textDecoration: 'none',
-              }}>
-              PEPPER
-            </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              {categories.map((category: any, index: number) => {
-                return (
-                  <Link
-                    to={`/${category}`}
-                    style={{ textDecoration: 'none' }}>
-                    <Button
-                      key={index}
-                      onClick={handleCloseNavMenu}
-                      sx={{ my: 2, color: 'white', display: 'block' }}>
-                      {category}
-                    </Button>
-                  </Link>
-                );
-              })}
-            </Box>
+                PEPPER
+              </Typography>
 
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
+              <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                 <IconButton
-                  onClick={handleOpenUserMenu}
-                  sx={{ p: 0 }}>
-                  <Avatar
-                    sx={{ bgcolor: 'black' }}
-                    src="/broken-image.jpg"
-                  />
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleOpenNavMenu}
+                  color="inherit">
+                  <MenuIcon />
                 </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: '45px' }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}>
-                {settings.map((setting) => (
-                  <MenuItem
-                    key={setting}
-                    onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
-                  </MenuItem>
-                ))}
-              </Menu>
-            </Box>
-          </Toolbar>
-        </Container>
-      </AppBar>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorElNav}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  open={Boolean(anchorElNav)}
+                  onClose={handleCloseNavMenu}
+                  sx={{
+                    display: { xs: 'block', md: 'none' },
+                  }}>
+                  {categories.map((category: any, index: number) => (
+                    <Link
+                      to={`/${category}`}
+                      style={{ textDecoration: 'none' }}
+                      key={index}>
+                      <MenuItem onClick={handleCloseNavMenu}>
+                        <Typography textAlign="center">{category}</Typography>
+                      </MenuItem>
+                    </Link>
+                  ))}
+                </Menu>
+              </Box>
+              <Typography
+                variant="h5"
+                noWrap
+                component="a"
+                href="#app-bar-with-responsive-menu"
+                sx={{
+                  mr: 2,
+                  display: { xs: 'flex', md: 'none' },
+                  flexGrow: 1,
+                  fontFamily: 'monospace',
+                  fontWeight: 700,
+                  letterSpacing: '.3rem',
+                  color: 'inherit',
+                  textDecoration: 'none',
+                }}>
+                PEPPER
+              </Typography>
+              <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                {categories.map((category: any, index: number) => {
+                  return (
+                    <Link
+                      to={`/${category}`}
+                      style={{ textDecoration: 'none' }}
+                      key={index}>
+                      <Button
+                        onClick={handleCloseNavMenu}
+                        sx={{ my: 2, color: 'white', display: 'block' }}>
+                        {category}
+                      </Button>
+                    </Link>
+                  );
+                })}
+              </Box>
+
+              <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title="Open settings">
+                  <IconButton
+                    onClick={handleOpenUserMenu}
+                    sx={{ p: 0 }}>
+                    <Avatar
+                      sx={{ bgcolor: 'black' }}
+                      src="/broken-image.jpg"
+                    />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: '45px' }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}>
+                  {settings.map((setting, index) => (
+                    <Link
+                      to={`/${setting}`.toLowerCase()}
+                      style={{ textDecoration: 'none' }}
+                      key={index}>
+                      <MenuItem onClick={handleCloseUserMenu}>
+                        <Typography textAlign="center">{setting}</Typography>
+                      </MenuItem>
+                    </Link>
+                  ))}
+                </Menu>
+              </Box>
+            </Toolbar>
+          </Container>
+        </AppBar>
+        {currUser && (
+          <Typography
+            sx={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              variant: 'caption',
+            }}>
+            Logged in as: {currUser}
+          </Typography>
+        )}{' '}
+      </Stack>
     )
   );
 };
-export default ResponsiveAppBar;
+export default Header;

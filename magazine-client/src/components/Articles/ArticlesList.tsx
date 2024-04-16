@@ -34,17 +34,17 @@ const ArticlesList = ({ articles, title }: Props) => {
           <Grid
             item
             sm={12}
-            md={4}    xl={3}>
-           
+            md={4}
+            key={index}
+            xl={3}>
             <Card
               variant="outlined"
-              key={index}
-              sx={{ p: 2, m:3 }}>
+              sx={{ p: 2, m: 3 }}>
               <CardMedia
                 component="img"
                 alt={`picture of ${article.title}`}
                 height="200"
-                image='https://source.unsplash.com/B4TjXnI0Y2c'
+                image={article.image}
               />
               <CardContent>
                 <Typography

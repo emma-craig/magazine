@@ -6,16 +6,18 @@ import {
   TextField,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import ArticlesContext from '../../context/ArticlesContext';
+import ArticlesContext from '../../contexts/ArticlesContext';
 
 const SearchBar = () => {
-  const  data  = useContext(ArticlesContext);
-  const uniqueOptionsList = data && data
-    .map((option: any) => option.title)
-    .filter(
-      (value: any, index: number, self: any) => self.indexOf(value) === index
-    );
-    const [searchQuery, setSearchQuery] = useState('')
+  const data = useContext(ArticlesContext);
+  const uniqueOptionsList =
+    data &&
+    data
+      .map((option: any) => option.title)
+      .filter(
+        (value: any, index: number, self: any) => self.indexOf(value) === index
+      );
+  const [searchQuery, setSearchQuery] = useState('');
   return (
     <>
       {data && (
@@ -38,7 +40,7 @@ const SearchBar = () => {
                 type: 'search',
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton type='submit'>
+                    <IconButton type="submit">
                       <SearchIcon />
                     </IconButton>
                   </InputAdornment>
