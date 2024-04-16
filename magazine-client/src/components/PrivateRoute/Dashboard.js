@@ -25,8 +25,15 @@ const Dashboard = () => {
     navigate('./../login');
   };
   const handleDeleteArticle = (id) => {
-    console.log('article deleted');
+
+    fetch(`http://localhost:5000/delete/${id}`, {
+      method: 'DELETE',
+    })
+      .then(() => alert('Article deleted successfully'))
+      .then(() => navigate('./../dashboard'));
+    alert('article deleted');
   };
+
   const handleEditArticle = (id) => {
     console.log('article opened and ready to edit');
   };
@@ -109,7 +116,7 @@ const Dashboard = () => {
                   <IconButton
                     aria-label="remove article button"
                     onClick={() => {
-                      handleDeleteArticle(1);
+                      handleDeleteArticle(item._id);
                     }}>
                     <DeleteSharp />
                   </IconButton>

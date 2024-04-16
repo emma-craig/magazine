@@ -1,5 +1,6 @@
 // Importing necessary modules and models
 const User = require('../models/UserModel');
+const Article = require('../models/ArticleModel');
 const { check, validationResult } = require('express-validator');
 const jwtToken = require('jsonwebtoken');
 const { expressjwt: jwt } = require('express-jwt');
@@ -91,4 +92,49 @@ exports.getAllUsers = (req, res) => {
   const users = User.find({});
   console.log('users', users);
   return res.json(arts);
+};
+
+//new article
+
+exports.create = (req, res) => {
+  // Validate  input using express-validator
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json({
+      error: errors.array()[0].msg,
+    });
+  }
+  // Creating a new article instance and saving it to the database
+  const article = new Article(req.body);
+  article
+    .save()
+    .then((article) => {
+      res.json({
+        title: article.title,
+        text: article.text,
+        date: article.date,
+        fulltext: article.fullText,
+        category: article.category,
+        image: article.image,
+      });
+    })
+    .catch((err) => {
+      let errorMessage = 'Something went wrong.';
+
+      return res.status(500).json({ error: errorMessage });
+    });
+};
+
+exports.delete_art = (req, res) => {
+  const id = req.params.id;
+  Article.findByIdAndDelete(id)
+    .then(() => {
+      res
+        .status(202) //
+        .send(`Article with ${id} was successfully deleted`); // do a populate to show title
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+
 };

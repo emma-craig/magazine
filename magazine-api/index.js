@@ -9,7 +9,13 @@ const mongoose = require('mongoose');
 const User = require('./models/UserModel');
 
 const Article = require('./models/ArticleModel');
-const { login, logout, isSignedIn } = require('./controllers/authController');
+const {
+  login,
+  logout,
+  isSignedIn,
+  create,
+  delete_art,
+} = require('./controllers/authController');
 
 require('dotenv').config({ path: '.env' });
 
@@ -66,3 +72,7 @@ app.get('/logout', () => (req, res) => {
     message: 'User has signed out',
   });
 });
+
+app.post('/create', create);
+
+app.delete('/delete/:id', delete_art);
