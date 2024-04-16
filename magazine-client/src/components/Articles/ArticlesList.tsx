@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import {
+  Box,
   Button,
   Card,
   CardActions,
   CardContent,
   CardMedia,
-  Collapse,
   Grid,
+  Modal,
+  Stack,
   Typography,
 } from '@mui/material';
 type Props = {
@@ -17,12 +19,9 @@ type Props = {
 };
 
 const ArticlesList = ({ articles, title }: Props) => {
-  const [expandedId, setExpandedId] = useState(-1);
-  const [buttonText, setButtonText] = useState('Read more');
-  const handleReadMore = (i: number) => {
-    setExpandedId(expandedId === i ? -1 : i);
-    setButtonText(expandedId === i ? 'read more' : 'read less');
-  };
+  const [open, setOpen] = useState(false);
+  const handleReadMore = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <>
@@ -55,20 +54,49 @@ const ArticlesList = ({ articles, title }: Props) => {
                 </Typography>
                 <Typography variant="body1">{article.text}</Typography>
               </CardContent>
-              <Collapse
-                in={expandedId === index}
-                timeout="auto"
-                unmountOnExit>
-                <CardContent>
-                  <div>{article.fulltext}</div>
-                </CardContent>
-              </Collapse>
+
               <CardActions>
-                <Button
-                  size="small"
-                  onClick={() => handleReadMore(index)}>
-                  {buttonText}
-                </Button>
+                <Button onClick={handleReadMore}>READ MORE</Button>
+                <Modal
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                  }}>
+                  <Box
+                    sx={{ bgcolor: 'white', padding: 4 }}
+                    display="flex"
+                    flexDirection="column"
+                    justifyContent="center">
+                    <Stack
+                      display="flex"
+                      justifyContent="space between">
+                      <img
+                        src={article.image}
+                        alt=" thing"
+                        height="200px"
+                        width="300px"
+                      />
+                      <Button onClick={handleClose}>CLOSE</Button>
+                    </Stack>
+                    <Typography
+                      id="modal-modal-title"
+                      variant="h6"
+                      component="h2">
+                      {article.title}{' '}
+                    </Typography>
+                    <Typography
+                      id="modal-modal-description"
+                      sx={{ mt: 2 }}>
+                      {article.text}
+                      {article.fulltext}{' '}
+                    </Typography>
+                  </Box>
+                </Modal>
               </CardActions>
             </Card>
           </Grid>

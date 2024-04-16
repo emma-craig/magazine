@@ -36,9 +36,11 @@ const CreateArticle = () => {
       .then(() => alert('Article saved successfully'))
       .then(() => navigate('./../dashboard'));
   };
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <Paper
