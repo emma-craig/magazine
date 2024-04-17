@@ -10,7 +10,7 @@ const useFetchArticles = () => {
       try {
         const response =
           // (await fetch('http://localhost:5000/articles')) ;
-          await fetch('https://the-magazine.vercel.app//articles');
+          await fetch('http://the-magazine-back-hl8u3zu25-emmas-projects-a7ccc856.vercel.app/articles');
           console.log(process.env.NODE_ENV_URL);
         const data = await response.json();
         setData(data);
