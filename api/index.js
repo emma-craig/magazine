@@ -38,22 +38,20 @@ app.use(bodyParser.json());
 
 // Cookie-parser for handling cookies
 app.use(cookieParser());
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  next();
-});
-// CORS for enabling Cross-Origin Resource Sharing
-app.use(
-  cors({
-    origin: [
-      'https://the-magazine-back-4tojgsktw-emmas-projects-a7ccc856.vercel.app',
-    ],
-    methods: ['POST', 'GET', 'PUT', 'DELETE'],
-    credentials: true,
-    mode: 'no-cors',
 
-  })
-);
+// CORS for enabling Cross-Origin Resource Sharing
+//
+
+const options = [
+  cors({
+    origin: '*',
+    methods: '*',
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+  }),
+];
+
+app.use(options);
 
 // Routing
 app.get('/articles', async (req, res) => {
