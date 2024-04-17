@@ -43,7 +43,7 @@ app.use(cookieParser());
 app.use(
   cors({
     origin: [
-      'https://the-magazine-back-979lze1or-emmas-projects-a7ccc856.vercel.app',
+      'https://the-magazine-back-4tojgsktw-emmas-projects-a7ccc856.vercel.app',
     ],
     methods: ['POST', 'GET', 'PUT', 'DELETE'],
     credentials: true,

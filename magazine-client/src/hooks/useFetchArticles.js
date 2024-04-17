@@ -10,8 +10,17 @@ const useFetchArticles = () => {
       try {
         const response =
           // (await fetch('http://localhost:5000/articles')) ;
-          await fetch('https://the-magazine-back-end.vercel.app/articles');
-          console.log(process.env.NODE_ENV_URL);
+          await fetch('https://the-magazine-back-end.vercel.app/articles', {
+            mode: 'no-cors',
+
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              mode: 'no-cors',
+              credentials: 'true',
+            },
+          });
+        console.log(process.env.NODE_ENV_URL);
         const data = await response.json();
         setData(data);
       } catch (error) {

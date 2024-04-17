@@ -11,7 +11,16 @@ const useFetchUsers = () => {
       try {
         const response =
           // (await fetch('http://localhost:5000/users')) ;
-          await fetch('https://the-magazine-back-end.vercel.app/users');
+          await fetch('https://the-magazine-back-end.vercel.app', {
+            mode: 'no-cors',
+
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              mode: 'no-cors',
+              credentials: 'true',
+            },
+          });
 
         const user = await response.json();
         setUser(user);
