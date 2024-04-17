@@ -40,7 +40,13 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 // CORS for enabling Cross-Origin Resource Sharing
-app.use(cors());
+app.use(cors(
+  {
+    origin: ['https://the-magazine.vercel.app/'],
+    methods: ['POST', 'GET', 'PUT', 'DELETE'],
+    credentials: true
+  }
+));
 
 // Routing
 app.get('/articles', async (req, res) => {
