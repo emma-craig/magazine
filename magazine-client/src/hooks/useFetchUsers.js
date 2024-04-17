@@ -10,8 +10,7 @@ const useFetchUsers = () => {
       setLoading(true);
       try {
         const response =
-          // (await fetch('http://localhost:5000/users')) ;
-          await fetch('https://the-magazine-back-end.vercel.app', {
+          await fetch('https://the-magazine-back-end.vercel.app/users', {
             mode: 'no-cors',
 
             method: 'GET',
