@@ -11,7 +11,7 @@ const useFetchUsers = () => {
       try {
         const response =
           // (await fetch('http://localhost:5000/users')) ;
-          await fetch('https://the-magazine-back-hl8u3zu25-emmas-projects-a7ccc856.vercel.app/users');
+          await fetch('http://the-magazine-back-end.vercel.app/users');
 
         const user = await response.json();
         setUser(user);
