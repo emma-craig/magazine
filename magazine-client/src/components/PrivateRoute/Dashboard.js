@@ -25,15 +25,12 @@ const Dashboard = () => {
     navigate('./../login');
   };
   const handleDeleteArticle = (id) => {
-
     fetch(`http://localhost:5000/delete/${id}`, {
       method: 'DELETE',
     })
       .then(() => alert('Article deleted successfully'))
       .then(() => navigate('./../dashboard'));
-    alert('article deleted');
   };
-
   const handleEditArticle = (id) => {
     console.log('article opened and ready to edit');
   };

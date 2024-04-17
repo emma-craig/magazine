@@ -38,7 +38,10 @@ app.use(bodyParser.json());
 
 // Cookie-parser for handling cookies
 app.use(cookieParser());
-
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
 // CORS for enabling Cross-Origin Resource Sharing
 app.use(
   cors({
@@ -47,6 +50,8 @@ app.use(
     ],
     methods: ['POST', 'GET', 'PUT', 'DELETE'],
     credentials: true,
+    mode: 'no-cors',
+
   })
 );
 

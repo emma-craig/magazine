@@ -5,6 +5,7 @@ import ArticlesContext from '../contexts/ArticlesContext';
 
 const Layout = ({ category }: { category: string }) => {
   const data = useContext(ArticlesContext);
+
   const currArticles =
     data && data.filter((cat: any) => cat.category === category);
   return (
