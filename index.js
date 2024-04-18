@@ -25,10 +25,9 @@ const app = express();
 app.listen(5000, () => {
   console.log('server running on localhost:5000');
 });
-
 // MONGOOSE CONNECTION
 mongoose
-  .connect(process.env.CONNECTION_STRING)
+  .connect("mongodb+srv://emmacraigjennens:YkSaJ4XwwDSxnfXk@peppermagazine.m8qt2gm.mongodb.net/pepper_magazine?retryWrites=true&w=majority&appName=PepperMagazine")
   .then(() => console.log(`Connected to database`))
   .catch((err) => console.error(err));
 
