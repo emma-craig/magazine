@@ -9,14 +9,12 @@ const useFetchArticles = () => {
       setLoading(true);
       try {
         const response =
-          await fetch('https://the-magazine-back-end.vercel.app/articles', {
-            mode: 'no-cors',
+          await fetch('http://localhost:5000/articles', {
 
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
-              mode: 'no-cors',
-              credentials: 'true',
+  
             },
           });
         const data = await response.json();
