@@ -28,6 +28,7 @@
     "typescript": "^5.4.4"
   },
   "scripts": {
-    "start": "npx nodemon"
+    "start": "npx nodemon",
+    "build-client" : "cd ./client && yarn build"
   }
 }

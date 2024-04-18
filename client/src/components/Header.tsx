@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
-import getCategories from './../utils/getCategories';
+import getCategories from '../utils/getCategories';
 import { useContext } from 'react';
 import ArticlesContext from '../contexts/ArticlesContext';
 import Stack from '@mui/material/Stack';

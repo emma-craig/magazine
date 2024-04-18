@@ -15,7 +15,7 @@ import {
 import { logout } from '../../utils/authUser';
 import { useNavigate } from 'react-router-dom';
 import { AddSharp, DeleteSharp } from '@mui/icons-material';
-import ArticlesContext from './../../contexts/ArticlesContext';
+import ArticlesContext from '../../contexts/ArticlesContext';
 import EditIcon from '@mui/icons-material/Edit';
 import LogoutIcon from '@mui/icons-material/Logout';
 const Dashboard = () => {
