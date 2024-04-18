@@ -28,7 +28,7 @@ app.listen(5000, () => {
 
 // MONGOOSE CONNECTION
 mongoose
-  .connect(process.env.REACT_APP_DATABASE_URL)
+  .connect(process.env.CONNECTION_STRING)
   .then(() => console.log(`Connected to database`))
   .catch((err) => console.error(err));
 
