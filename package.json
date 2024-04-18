@@ -29,6 +29,6 @@
   },
   "scripts": {
     "start": "npx nodemon",
-    "build-client" : "cd ./client && yarn build"
+    "build-client" : "cd ./client && yarn && yarn build"
   }
 }
