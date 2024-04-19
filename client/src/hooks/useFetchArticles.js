@@ -4,7 +4,7 @@ const useFetchArticles = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
   const domain =
-    process.env.NODE_ENV === 'production' ? '' : 'http://localhost:5000';
+    process.env.NODE_ENV === 'production' ? 'https://monthly-elicia-pepper-magazine.koyeb.app/' : 'http://localhost:5000';
 
   useEffect(() => {
     const fetchData = async () => {

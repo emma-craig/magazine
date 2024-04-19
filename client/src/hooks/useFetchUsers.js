@@ -4,7 +4,7 @@ const useFetchUsers = () => {
   const [user, setUser] = useState({});
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
-  const domain = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:5000'
+  const domain = process.env.NODE_ENV === 'production' ? 'https://monthly-elicia-pepper-magazine.koyeb.app/' : 'http://localhost:5000'
 
   useEffect(() => {
     const fetchUsers = async () => {
