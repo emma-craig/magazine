@@ -86,3 +86,6 @@ app.get('/logout', () => (req, res) => {
 app.post('/create', create);
 
 app.delete('/delete/:id', delete_art);
+
+app.use(express.static('public'))
+
