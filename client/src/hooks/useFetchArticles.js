@@ -4,11 +4,12 @@ const useFetchArticles = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
   const domain =
-    process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3000';
+    process.env.NODE_ENV === 'production' ? '' : 'http://localhost:5000';
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
+      console.log(domain);
       try {
         const response = await fetch(`${domain}/articles`, {
           // await fetch('http://localhost:5000/articles', {
