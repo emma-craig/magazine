@@ -4,13 +4,14 @@ const useFetchUsers = () => {
   const [user, setUser] = useState({});
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
+  const domain = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3000'
 
   useEffect(() => {
     const fetchUsers = async () => {
       setLoading(true);
       try {
         const response =
-          await fetch('http://localhost:5000/users', {
+          await fetch(`${domain}/users`, {
 
             method: 'GET',
             headers: {
@@ -28,7 +29,7 @@ const useFetchUsers = () => {
       }
     };
     fetchUsers();
-  }, []);
+  }, [domain]);
   return { user, loading, error };
 };
 

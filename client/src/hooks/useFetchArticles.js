@@ -3,20 +3,21 @@ const useFetchArticles = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
+  const domain =
+    process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3000';
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response =
-          await fetch('http://localhost:5000/articles', {
+        const response = await fetch(`${domain}/articles`, {
+          // await fetch('http://localhost:5000/articles', {
 
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-  
-            },
-          });
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
         const data = await response.json();
         setData(data);
       } catch (error) {
@@ -26,7 +27,7 @@ const useFetchArticles = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [domain]);
   return { data, loading, error };
 };
 
