@@ -19,6 +19,7 @@ const useFetchArticles = () => {
             'Content-Type': 'application/json',
           },
         });
+        console.log('response---',response);
         const data = await response.json();
         setData(data);
       } catch (error) {
