@@ -60,7 +60,7 @@ export const logout = (next) => {
     })
     .then(response => response.json())
     .then(data => {
-      console.log(data);
+      console.log('logged out',data);
       next();
     })
     .catch(error => console.log(error));

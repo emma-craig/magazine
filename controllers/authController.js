@@ -90,7 +90,6 @@ exports.isAuthenticated = (req, res, next) => {
 
 exports.getAllUsers = (req, res) => {
   const users = User.find({});
-  console.log('users', users);
   return res.json(arts);
 };
 

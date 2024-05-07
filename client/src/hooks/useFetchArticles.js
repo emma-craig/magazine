@@ -9,7 +9,6 @@ const useFetchArticles = () => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      console.log(domain);
       try {
         const response = await fetch(`${domain}/articles`, {
           // await fetch('http://localhost:5000/articles', {
@@ -20,7 +19,6 @@ const useFetchArticles = () => {
           },
         });
         const data = await response.json();
-        console.log('data', data);
         setData(data);
       } catch (error) {
         setError(error);
