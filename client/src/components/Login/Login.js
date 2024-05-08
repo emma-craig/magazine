@@ -16,12 +16,15 @@ const Login = () => {
       alert('Please fill in both fields');
       return;
     }
-    login({ userName, password }).then((data) =>
-      authenticate(data, () => {
-        setFormData({ ...formData });
-        navigate('./../dashboard');
-      })
-    );
+
+    login({ userName, password })
+      .then((data) =>
+        authenticate(data, () => {
+          setFormData({ ...formData });
+        })
+      )
+
+      .then(() => navigate('./../dashboard'));
   };
 
   const handleTextInput = (e) => {

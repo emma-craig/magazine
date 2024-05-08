@@ -50,6 +50,7 @@ exports.login = async (req, res) => {
         error: 'User not found',
       });
     }
+    //WHY DOES THIS RETURN ERROR ???
     // if (!user.authenticate(password)) {
     //     return res.status(401).json({
     //         error: "userName or Password does not exist"
@@ -63,13 +64,13 @@ exports.login = async (req, res) => {
   });
 };
 // LOGOUT: Clearing user token
-// exports.logout = (req, res) => {
-//     console.log('logged out');
-//     res.clearCookie("token");
-//     res.json({
-//         message: "User has signed out"
-//     });
-// };
+exports.logout = (req, res) => {
+    console.log('logged out');
+    res.clearCookie("token");
+    res.json({
+        message: "User has signed out"
+    });
+};
 // Protected Routes
 exports.isSignedIn = jwt({
   secret: 'shhhhh',

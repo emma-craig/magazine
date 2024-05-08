@@ -16,14 +16,13 @@ import getCategories from '../utils/getCategories';
 import { useContext } from 'react';
 import ArticlesContext from '../contexts/ArticlesContext';
 import Stack from '@mui/material/Stack';
-import { CurrentUserContext } from '../contexts/UserContext';
+import  AuthContext  from '../contexts/AuthContext';
 
 const settings = ['Login', 'Dashboard'];
 
 const Header = () => {
   const data = useContext(ArticlesContext);
-  const currUser = useContext(CurrentUserContext);
-  console.log(currUser);
+  const currentUser = useContext(AuthContext) ?? undefined
   const categories = data && getCategories(data);
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -181,14 +180,14 @@ const Header = () => {
                     </Link>
                   ))}
                 </Menu>{' '}
-                {currUser && (
+                {currentUser && (
                   <Typography
                     sx={{
                       display: 'flex',
                       justifyContent: 'flex-end',
                       variant: 'caption',
                     }}>
-                    {currUser}
+                    {currentUser}
                   </Typography>
                 )}
               </Box>

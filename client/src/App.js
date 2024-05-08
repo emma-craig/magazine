@@ -14,83 +14,79 @@ import {
 import './App.css';
 import useFetchArticles from './hooks/useFetchArticles';
 import ArticlesContext from './contexts/ArticlesContext';
-import { UsersContext, CurrentUserContext } from './contexts/UserContext';
-import { isAuthenticated } from './utils/authUser';
+import AuthContext from './contexts/AuthContext';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './theme/MUITheme';
-import useFetchUsers from './hooks/useFetchUsers';
 import Dashboard from './components/PrivateRoute/Dashboard';
 import Header from './components/Header';
 
-const authenticatedUser = isAuthenticated();
-const currentUser = authenticatedUser?.user?.userName;
-const PrivateRoutes = (authenticatedUser) => {
-  return authenticatedUser ? <Outlet /> : <Navigate to="/login" />;
+const PrivateRoutes = () => {
+  const jwt = JSON.parse(localStorage.getItem('jwt'));
+  return jwt ? <Outlet /> : <Navigate to="/login" />;
 };
+
 const App = () => {
+  const jwt = JSON.parse(localStorage.getItem('jwt'));
+  let currentUser = jwt?.user?.userName;
+
   const { data } = useFetchArticles();
-  const { user } = useFetchUsers();
-  console.log(user, data);
+
   return (
     <div className="app">
       <ThemeProvider theme={theme}>
         <Router>
-          <UsersContext.Provider value={user}>
-            <CurrentUserContext.Provider value={currentUser}>
-              {data && (
-                <ArticlesContext.Provider value={data}>
-                  <Header />
-                  <Routes>
-                    <Route element={<PrivateRoutes />}>
-                      <Route
-                        path="/dashboard"
-                        element={<Dashboard />}
-                      />
-                      <Route
-                        path="/create"
-                        element={<CreateArticle />}
-                      />
-                      <Route
-                        path="/edit"
-                        element={<EditArticle />}
-                      />
-                      <Route
-                        path="/delete"
-                        element={<DeleteArticle />}
-                      />
-                    </Route>
+          <AuthContext.Provider value={currentUser}>
+            {data && (
+              <ArticlesContext.Provider value={data}>
+                <Header />
+                <Routes>
+                  <Route element={<PrivateRoutes />}>
                     <Route
-                      exact
-                      path="/"
-                      element={<Layout category="beauty" />}
-
-                      // element={<Main currUser={currentUser}/>}
+                      path="/dashboard"
+                      element={<Dashboard />}
                     />
                     <Route
-                      path="/login"
-                      element={<Login />}
+                      path="/create"
+                      element={<CreateArticle />}
                     />
                     <Route
-                      path="/beauty"
-                      element={<Layout category="beauty" />}
+                      path="/edit"
+                      element={<EditArticle />}
                     />
                     <Route
-                      path="/fashion"
-                      element={<Layout category="fashion" />}
+                      path="/delete"
+                      element={<DeleteArticle />}
                     />
-                    <Route
-                      path="/health"
-                      element={<Layout category="health" />}
-                    />
-                    <Route
-                      path="/life"
-                      element={<Layout category="life" />}
-                    />
-                  </Routes>
-                </ArticlesContext.Provider>
-              )}
-            </CurrentUserContext.Provider>
-          </UsersContext.Provider>
+                  </Route>
+                  <Route
+                    exact
+                    path="/"
+                    element={<Layout category="beauty" />}
+                  />
+                  <Route
+                    path="/login"
+                    element={<Login />}
+                  />
+                  <Route
+                    path="/beauty"
+                    element={<Layout category="beauty" />}
+                  />
+                  <Route
+                    path="/fashion"
+                    element={<Layout category="fashion" />}
+                  />
+                  <Route
+                    path="/health"
+                    element={<Layout category="health" />}
+                  />
+                  <Route
+                    path="/life"
+                    element={<Layout category="life" />}
+                  />
+                </Routes>
+              </ArticlesContext.Provider>
+            )}
+          </AuthContext.Provider>
         </Router>
       </ThemeProvider>
     </div>
