@@ -19,6 +19,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './theme/MUITheme';
 import Dashboard from './components/PrivateRoute/Dashboard';
 import Header from './components/Header';
+import Title from './components/Title';
 
 const PrivateRoutes = () => {
   const jwt = JSON.parse(localStorage.getItem('jwt'));
@@ -38,6 +39,7 @@ const App = () => {
           <AuthContext.Provider value={currentUser}>
             {data && (
               <ArticlesContext.Provider value={data}>
+                <Title />
                 <Header />
                 <Routes>
                   <Route element={<PrivateRoutes />}>
