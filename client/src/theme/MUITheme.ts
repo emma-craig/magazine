@@ -1,14 +1,25 @@
-import { createTheme} from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
-    palette: {
-      primary: {
-        main: '#E3D026',
-        light: '#E9DB5D',
-        dark: '#A29415',
-        contrastText: '#242105',
-      },
+  palette: {
+    primary: {
+      main: '#000',
+      light: '#E9DB5D',
+      dark: '#A29415',
+      contrastText: '#242105',
     },
-  });
 
-export  {theme}
+  },
+  components: {MuiTabs: {
+    styleOverrides: {
+      root: {
+        hover: {
+          color: 'red'
+
+        }
+      }
+    }
+  }}
+});
+
+export { theme };
