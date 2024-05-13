@@ -5,50 +5,53 @@ import Instagram from "../icons/Instagram"
 import Facebook from "../icons/Facebook"
 import Youtube from "../icons/Youtube"
 import Linkedin from "../icons/Linkedin"
-import './Footer.css'
+import { Box } from "@mui/system"
+import { List, ListItem } from "@mui/material"
 
 const SocialUrls = () => {
     const {instagram, facebook, youtube, linkedin } = SOCIAL_USERNAMES
   
     return (
-      <ul className="social-media-list">
+      <Box display = 'flex' flexDirection='row'  justifyContent='flex-end'>
+             <List style={{ display: 'flex', flexDirection: 'row', padding: 0 }} component = 'ul'>
+
         {instagram && (
-          <li className="px-4">
+          <ListItem >
             <Link
               to={`https://instagram.com/${instagram}`}
             >
               <Instagram width="20" height="20" />
             </Link>
-          </li>
+          </ListItem>
         )}
         {facebook && (
-          <li className="px-4">
+          <ListItem >
             <Link
               to={`https://facebook.com/${facebook}`}
             >
               <Facebook width="20" height="20" />
             </Link>
-          </li>
+          </ListItem>
         )}
         {youtube && (
-          <li className="px-4">
+          <ListItem >
             <Link
               to={`https://youtube.com/user/${youtube}`}
             >
               <Youtube width="20" height="20" />
             </Link>
-          </li>
+          </ListItem>
         )}
         {linkedin && (
-          <li className="px-4">
+          <ListItem >
             <Link
               to={`https://linkedin.com/in/${linkedin}`}
             >
               <Linkedin width="20" height="20" />
             </Link>
-          </li>
+          </ListItem>
         )}
-      </ul>
+      </List></Box>
     )
   }
   

@@ -33,12 +33,12 @@ const ArticlesList = ({ articles, title }: Props) => {
           <Grid
             item
             sm={12}
-            md={4}
+            md={3}
             key={index}
             xl={3}>
             <Card
-              variant="outlined"
-              sx={{ p: 2, m: 3 }}>
+              sx={{ m: 3 }}
+              >
               <CardMedia
                 component="img"
                 alt={`picture of ${article.title}`}
