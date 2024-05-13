@@ -57,7 +57,8 @@ const CreateArticle = () => {
             select
             value={formData.category}
             name="category"
-            onChange={handleChange}>
+            onChange={handleChange}
+            required>
             {categories.map((option, index) => (
               <MenuItem
                 key={index}
