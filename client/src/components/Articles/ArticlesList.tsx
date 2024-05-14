@@ -36,15 +36,25 @@ const ArticlesList = ({ articles, title }: Props) => {
             md={3}
             key={index}
             xl={3}>
-            <Card
-              sx={{ m: 3 }}
-              >
+            <Card sx={{ m: 3, position: 'relative' }}>
               <CardMedia
                 component="img"
                 alt={`picture of ${article.title}`}
                 height="200"
                 image={article.image}
               />
+              <div
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  right: 0,
+                  padding: '10px',
+                  color: 'black',
+                  fontWeight: '600',
+                  backgroundColor: 'white',
+                }}>
+                {article.category}
+              </div>
               <CardContent>
                 <Typography
                   gutterBottom
