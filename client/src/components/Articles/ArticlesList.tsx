@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import {
   Box,
   Button,
   Card,
-  CardActions,
   CardContent,
   CardMedia,
   Grid,
@@ -11,7 +10,7 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
-import { padding } from '@mui/system';
+import Loading from '../Loading';
 type Props = {
   articles: any[];
   title?: string;
@@ -22,13 +21,14 @@ type Props = {
 const ArticlesList = ({ articles, title }: Props) => {
   const [open, setOpen] = useState(false);
   const handleReadMore = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {console.log('close') 
+  setOpen(false)};
   const formatDate = (d: string) => {
     var d1 = new Date(d);
     return d1.toDateString();
   };
   return (
-    <>
+<Suspense fallback={<Loading />}>
       <h1>{title}</h1>
       <Grid
         container
@@ -137,7 +137,7 @@ const ArticlesList = ({ articles, title }: Props) => {
           </Grid>
         ))}
       </Grid>
-    </>
+    </Suspense>
   );
 };
 
