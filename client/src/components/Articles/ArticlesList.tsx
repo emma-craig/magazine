@@ -11,6 +11,7 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
+import { padding } from '@mui/system';
 type Props = {
   articles: any[];
   title?: string;
@@ -22,7 +23,10 @@ const ArticlesList = ({ articles, title }: Props) => {
   const [open, setOpen] = useState(false);
   const handleReadMore = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
+  const formatDate = (d: string) => {
+    var d1 = new Date(d);
+    return d1.toDateString();
+  };
   return (
     <>
       <h1>{title}</h1>
@@ -33,10 +37,13 @@ const ArticlesList = ({ articles, title }: Props) => {
           <Grid
             item
             sm={12}
-            md={3}
+            md={4}
             key={index}
             xl={3}>
-            <Card sx={{ m: 3, position: 'relative' }}>
+            <Card
+              style={{ display: 'flex', flexDirection: 'column' }}
+              sx={{ m: 3, position: 'relative', height: '450px' }}
+              onClick={handleReadMore}>
               <CardMedia
                 component="img"
                 alt={`picture of ${article.title}`}
@@ -55,59 +62,77 @@ const ArticlesList = ({ articles, title }: Props) => {
                 }}>
                 {article.category}
               </div>
-              <CardContent>
+              <CardContent style={{ marginTop: 'auto' }}>
                 <Typography
                   gutterBottom
-                  variant="h5"
-                  component="div">
+                  variant="h4"
+                  component="div"
+                  fontFamily="Georgia, sans-serif">
                   {article.title}
                 </Typography>
-                <Typography variant="body1">{article.text}</Typography>
+                <Typography
+                  fontFamily="Georgia, sans-serif"
+                  variant="body1"
+                  color="grey">
+                  by{' '}
+                </Typography>
+                <Typography
+                  paddingBottom={2}
+                  variant="body1">
+                  {article.author}{' '}
+                </Typography>
+
+                <hr />
+                <Typography
+                  variant="caption"
+                  color="grey">
+                  {formatDate(article.date)}
+                </Typography>
               </CardContent>
 
-              <CardActions>
-                <Button onClick={handleReadMore}>READ MORE</Button>
-                <Modal
-                  open={open}
-                  onClose={handleClose}
-                  aria-labelledby="modal-modal-title"
-                  aria-describedby="modal-modal-description"
-                  sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                  }}>
-                  <Box
-                    sx={{ bgcolor: 'white', padding: 4 }}
+              {/* <CardActions>
+                <Button onClick={handleReadMore}><Typography variant="caption">Read article</Typography></Button> */}
+              <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                }}>
+                <Box
+                  sx={{ bgcolor: 'white', padding: 4 }}
+                  display="flex"
+                  flexDirection="column"
+                  justifyContent="center">
+                  <Stack
                     display="flex"
-                    flexDirection="column"
-                    justifyContent="center">
-                    <Stack
-                      display="flex"
-                      justifyContent="space between">
-                      <img
-                        src={article.image}
-                        alt=" thing"
-                        height="200px"
-                        width="300px"
-                      />
-                      <Button onClick={handleClose}>CLOSE</Button>
-                    </Stack>
-                    <Typography
-                      id="modal-modal-title"
-                      variant="h6"
-                      component="h2">
-                      {article.title}{' '}
-                    </Typography>
-                    <Typography
-                      id="modal-modal-description"
-                      sx={{ mt: 2 }}>
-                      {article.text}
-                      {article.fulltext}{' '}
-                    </Typography>
-                  </Box>
-                </Modal>
-              </CardActions>
+                    justifyContent="space between">
+                    <img
+                      src={article.image}
+                      alt=" thing"
+                      height="200px"
+                      width="300px"
+                    />
+                    <Button onClick={handleClose}>CLOSE</Button>
+                  </Stack>
+                  <Typography
+                    id="modal-modal-title"
+                    variant="h6"
+                    component="h2">
+                    {article.title}{' '}
+                  </Typography>
+                  <Typography
+                    id="modal-modal-description"
+                    sx={{ mt: 2 }}>
+                    {article.text}
+                    {article.fulltext}{' '}
+                  </Typography>
+                </Box>
+              </Modal>
+              {/* </CardActions> */}
             </Card>
           </Grid>
         ))}

@@ -32,7 +32,7 @@ const Footer = () => {
                 <Typography variant="body2">MENU</Typography>
               </ListItem>
               <Link
-                to="./about"
+                to="/about"
                 style={{
                   textDecoration: 'none',
                   color: 'white',
@@ -43,7 +43,7 @@ const Footer = () => {
                 </ListItem>
               </Link>
               <Link
-                to="./contact"
+                to="/contact"
                 style={{
                   textDecoration: 'none',
                   color: 'white',
@@ -54,7 +54,7 @@ const Footer = () => {
                 </ListItem>
               </Link>
               <Link
-                to="./fashion"
+                to="/fashion"
                 style={{
                   textDecoration: 'none',
                   color: 'white',
@@ -65,7 +65,7 @@ const Footer = () => {
                 </ListItem>
               </Link>
               <Link
-                to="./beauty"
+                to="/beauty"
                 style={{
                   textDecoration: 'none',
                   color: 'white',
@@ -76,7 +76,7 @@ const Footer = () => {
                 </ListItem>
               </Link>
               <Link
-                to="./health"
+                to="/health"
                 style={{
                   textDecoration: 'none',
                   color: 'white',
@@ -87,7 +87,7 @@ const Footer = () => {
                 </ListItem>
               </Link>
               <Link
-                to="./life"
+                to="/life"
                 style={{
                   textDecoration: 'none',
                   color: 'white',
