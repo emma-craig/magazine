@@ -9,7 +9,7 @@ export default function Title() {
       justifyContent="center"
       alignContent="center">
       <img
-        src="/pepper_title.png"
+        src="/assets/pepper_title.png"
         alt="pepper magazine title"
       />
     </Box>

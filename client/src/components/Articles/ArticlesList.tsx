@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   Card,
+  CardActions,
   CardContent,
   CardMedia,
   Grid,
@@ -43,7 +44,7 @@ const ArticlesList = ({ articles, title }: Props) => {
             <Card
               style={{ display: 'flex', flexDirection: 'column' }}
               sx={{ m: 3, position: 'relative', height: '450px' }}
-              onClick={handleReadMore}>
+              >
               <CardMedia
                 component="img"
                 alt={`picture of ${article.title}`}
@@ -90,9 +91,9 @@ const ArticlesList = ({ articles, title }: Props) => {
                 </Typography>
               </CardContent>
 
-              {/* <CardActions>
-                <Button onClick={handleReadMore}><Typography variant="caption">Read article</Typography></Button> */}
-              <Modal
+              <CardActions>
+                <Button onClick={handleReadMore}><Typography variant="caption">Read article</Typography></Button> 
+              <Modal 
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
@@ -132,7 +133,7 @@ const ArticlesList = ({ articles, title }: Props) => {
                   </Typography>
                 </Box>
               </Modal>
-              {/* </CardActions> */}
+              </CardActions>
             </Card>
           </Grid>
         ))}

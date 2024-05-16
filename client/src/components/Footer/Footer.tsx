@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import SocialUrls from './SocialUrls';
 import { Box, Stack } from '@mui/system';
 import { List, ListItem, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
+import AuthContext from '../../contexts/AuthContext';
 
 const Footer = () => {
+  const currentUser = useContext(AuthContext) ?? undefined
+  const authLink = currentUser ? 'Login' : 'Logout'
   return (
     <Box
       padding="3rem 10rem 0 10rem"
@@ -95,6 +98,17 @@ const Footer = () => {
                 }}>
                 <ListItem disablePadding>
                   <Typography variant="body2">Life</Typography>
+                </ListItem>
+              </Link>
+              <Link
+              to={`/${authLink.toLowerCase()}`}
+                style={{
+                  textDecoration: 'none',
+                  color: 'white',
+                  padding: ' 0 1.5rem',
+                }}>
+                <ListItem disablePadding>
+                  <Typography variant="body2">{authLink}</Typography>
                 </ListItem>
               </Link>
             </List>
