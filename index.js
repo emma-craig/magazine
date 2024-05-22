@@ -7,7 +7,7 @@ const { check } = require('express-validator');
 const mongoose = require('mongoose');
 
 const User = require('./models/UserModel');
-
+const MailingList = require('./models/SubscribeModel');
 const Article = require('./models/ArticleModel');
 const {
   login,
@@ -16,6 +16,7 @@ const {
   create,
   delete_art,
 } = require('./controllers/authController');
+const { subscribe } = require('./controllers/subscribeController');
 
 require('dotenv').config({ path: '.env' });
 
@@ -60,6 +61,9 @@ app.get('/articles', async (req, res) => {
 app.get('/users', async (req, res) => {
   await User.find({}).then((user) => res.json(user));
 });
+app.get('/mailinglist', async (req, res) => {
+  await MailingList.find({}).then((email) => res.json(email));
+});
 
 app.post(
   '/login',
@@ -82,10 +86,9 @@ app.get('/logout', () => (req, res) => {
     message: 'User has signed out',
   });
 });
-
+app.post('/mailinglist', subscribe);
 app.post('/create', create);
 
 app.delete('/delete/:id', delete_art);
 
-app.use(express.static('public'))
-
+app.use(express.static('public'));

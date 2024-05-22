@@ -9,7 +9,7 @@ const ArticleSchema = new mongoose.Schema({
   text: String,
   fullText: String,
   image: String,
-  //  authors: [{type: mongoose.Schema.Types.ObjectId, ref: "Author"}]
+  authors: [{type: mongoose.Schema.Types.ObjectId, ref: "Author"}]
 });
 
 // //Export the articleSchema as Article

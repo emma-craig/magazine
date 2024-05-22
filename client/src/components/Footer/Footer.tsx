@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import SocialUrls from './SocialUrls';
-import SignUp from './SignUp';
 import { Box, Stack } from '@mui/system';
 import { List, ListItem, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../contexts/AuthContext';
+import Subscribe from './Subscribe';
 
 const Footer = () => {
   const currentUser = useContext(AuthContext) ?? undefined;
@@ -118,8 +118,8 @@ const Footer = () => {
             bgcolor="red"
             marginX="1.5rem"
             height="120px"
-            width="40%">
-            <SignUp />{' '}
+            width="400px">
+            <Subscribe />{' '}
           </Box>
         </Stack>
         <hr />
