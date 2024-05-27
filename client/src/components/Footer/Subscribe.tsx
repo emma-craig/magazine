@@ -1,22 +1,21 @@
 import { Button, TextField, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
-import React, { useState } from 'react';
+import React from 'react';
 import { subscribe } from '../../utils/subscribe';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 export default function Subscribe() {
-  const initialState = {
-    email: '',
-  };
-  const [formData, setFormData] = useState(initialState);
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+    },
+    validationSchema: Yup.object({
+      email: Yup.string().email('Invalid email address').required('Required'),
+    }),
+    onSubmit: (values) => subscribe(values.email),
+  });
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-
-    subscribe(formData.email);
-  };
-  const handleInput = (e: any) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
   return (
     <Stack sx={{ bgColor: 'red', color: 'white', padding: 2 }}>
       <Typography
@@ -27,14 +26,14 @@ export default function Subscribe() {
         NEWSLETTER SIGN UP
       </Typography>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={formik.handleSubmit}>
         <TextField
           name="email"
-          type="text"
           size="small"
           placeholder="Email"
-          value={formData.email}
-          onChange={handleInput}
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
           variant="filled"
           InputProps={{
             style: {
@@ -47,18 +46,27 @@ export default function Subscribe() {
             },
           }}
           sx={{
+            input: { background: 'white' },
             '& .MuiFilledInput-root': {
               backgroundColor: 'white',
               padding: 0,
             },
           }}
         />
+
         <Button
           variant="outlined"
           type="submit"
-          sx={{ backgroundColor: 'black', color: 'white', borderRadius: 0 }}>
+          sx={{
+            backgroundColor: 'black',
+            color: 'white',
+            borderRadius: 0,
+          }}>
           SUBMIT
         </Button>
+        {formik.touched.email && formik.errors.email ? (
+          <Typography>{formik.errors.email}</Typography>
+        ) : null}
       </form>
     </Stack>
   );

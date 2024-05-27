@@ -8,7 +8,6 @@ exports.subscribe = (req, res) => {
       .save()
       .then((subscribe) => {
         res.json({
-          name: subscribe.name,
           email: subscribe.email,
         });
       })
