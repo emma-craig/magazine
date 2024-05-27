@@ -1,11 +1,12 @@
 import { Button, TextField, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
-import React from 'react';
+import React, { useState } from 'react';
 import { subscribe } from '../../utils/subscribe';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 export default function Subscribe() {
+  const [showModal, setShowModal] = useState(false);
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -13,61 +14,70 @@ export default function Subscribe() {
     validationSchema: Yup.object({
       email: Yup.string().email('Invalid email address').required('Required'),
     }),
-    onSubmit: (values) => subscribe(values.email),
+    onSubmit: (values) => {
+      subscribe(values.email);
+      setShowModal(true);
+      formik.resetForm();
+      setTimeout(() =>setShowModal(false), 3000);
+    },
   });
 
   return (
-    <Stack sx={{ bgColor: 'red', color: 'white', padding: 2 }}>
-      <Typography
-        variant="caption"
-        marginBottom="6px"
-        color="white"
-        fontWeight="800">
-        NEWSLETTER SIGN UP
-      </Typography>
+    <>
+      <Stack sx={{ bgColor: 'red', color: 'white', padding: 2 }}>
+        <Typography
+          variant="caption"
+          marginBottom="6px"
+          color="white"
+          fontWeight="800">
+          NEWSLETTER SIGN UP
+        </Typography>
 
-      <form onSubmit={formik.handleSubmit}>
-        <TextField
-          name="email"
-          size="small"
-          placeholder="Email"
-          value={formik.values.email}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          variant="filled"
-          InputProps={{
-            style: {
+        <form onSubmit={formik.handleSubmit}>
+          <TextField
+            name="email"
+            size="small"
+            placeholder="Email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            variant="filled"
+            InputProps={{
+              style: {
+                borderRadius: 0,
+              },
+            }}
+            inputProps={{
+              style: {
+                padding: 8,
+              },
+            }}
+            sx={{
+              input: { background: 'white' },
+              '& .MuiFilledInput-root': {
+                backgroundColor: 'white',
+                padding: 0,
+              },
+            }}
+          />
+
+          <Button
+            variant="outlined"
+            type="submit"
+            sx={{
+              backgroundColor: 'black',
+              color: 'white',
               borderRadius: 0,
-            },
-          }}
-          inputProps={{
-            style: {
-              padding: 8,
-            },
-          }}
-          sx={{
-            input: { background: 'white' },
-            '& .MuiFilledInput-root': {
-              backgroundColor: 'white',
-              padding: 0,
-            },
-          }}
-        />
+            }}>
+            SUBMIT
+          </Button>
+          {formik.touched.email && formik.errors.email ? (
+            <Typography>{formik.errors.email}</Typography>
+          ) : null}
+        </form>
+        {showModal && <Typography variant = 'caption'>You have successfully subscribed to the newsletter</Typography>}
 
-        <Button
-          variant="outlined"
-          type="submit"
-          sx={{
-            backgroundColor: 'black',
-            color: 'white',
-            borderRadius: 0,
-          }}>
-          SUBMIT
-        </Button>
-        {formik.touched.email && formik.errors.email ? (
-          <Typography>{formik.errors.email}</Typography>
-        ) : null}
-      </form>
-    </Stack>
+      </Stack>
+    </>
   );
 }
