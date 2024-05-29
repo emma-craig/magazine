@@ -18,8 +18,8 @@ import AuthContext from './contexts/AuthContext';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './theme/MUITheme';
 import Dashboard from './components/PrivateRoute/Dashboard';
-import Header from './components/Header';
 import Title from './components/Title';
+import AppLayout from './AppLayout';
 
 const PrivateRoutes = () => {
   const jwt = JSON.parse(localStorage.getItem('jwt'));
@@ -40,8 +40,37 @@ const App = () => {
             {data && (
               <ArticlesContext.Provider value={data}>
                 <Title />
-                <Header />
                 <Routes>
+                  <Route
+                    path="/"
+                    element={<AppLayout />}>
+                    <Route
+                      exact
+                      path="/"
+                      element={<Layout category="beauty" />}
+                    />
+                 
+                    <Route
+                      path="/beauty"
+                      element={<Layout category="beauty" />}
+                    />
+                    <Route
+                      path="/fashion"
+                      element={<Layout category="fashion" />}
+                    />
+                    <Route
+                      path="/health"
+                      element={<Layout category="health" />}
+                    />
+                    <Route
+                      path="/life"
+                      element={<Layout category="life" />}
+                    />
+                  </Route>
+                  <Route
+                      path="/login"
+                      element={<Login />}
+                    />
                   <Route element={<PrivateRoutes />}>
                     <Route
                       path="/dashboard"
@@ -59,32 +88,11 @@ const App = () => {
                       path="/delete"
                       element={<DeleteArticle />}
                     />
+                    {/* <Route
+                      path="/logout"
+                      element={<Layout category="beauty" />}
+                    /> */}
                   </Route>
-                  <Route
-                    exact
-                    path="/"
-                    element={<Layout category="beauty" />}
-                  />
-                  <Route
-                    path="/login"
-                    element={<Login />}
-                  />
-                  <Route
-                    path="/beauty"
-                    element={<Layout category="beauty" />}
-                  />
-                  <Route
-                    path="/fashion"
-                    element={<Layout category="fashion" />}
-                  />
-                  <Route
-                    path="/health"
-                    element={<Layout category="health" />}
-                  />
-                  <Route
-                    path="/life"
-                    element={<Layout category="life" />}
-                  />
                 </Routes>
               </ArticlesContext.Provider>
             )}

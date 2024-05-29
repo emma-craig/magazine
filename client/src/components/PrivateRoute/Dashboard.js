@@ -22,7 +22,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const onLogout = () => {
     logout();
-    navigate('./../login');
+    navigate('/');
   };
   const handleDeleteArticle = (id) => {
     fetch(`http://localhost:5000/delete/${id}`, {
