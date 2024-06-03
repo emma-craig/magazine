@@ -13,9 +13,9 @@ const Footer = () => {
       justifyContent="center"
       sx={{ backgroundColor: 'black', color: 'white' }}>
       <Stack>
-        <Stack flexDirection="row">
+        <Stack direction={{ md: 'row', sm: 'column' }} justifyContent='space-around' alignItems={{md: '' , sm: 'center'}}>
           <Box
-            width="400px"
+            width="40%"
             marginX="1.5rem">
             <Typography variant="h6">PEPPER</Typography>
             <Typography variant="body2">
@@ -27,7 +27,7 @@ const Footer = () => {
           </Box>
           <Box
             marginX="1.5rem"
-            width="200px">
+            width="20%">
             <List>
               <ListItem disablePadding>
                 <Typography variant="body2">MENU</Typography>
@@ -115,7 +115,7 @@ const Footer = () => {
             bgcolor="red"
             marginX="1.5rem"
             height="120px"
-            width="400px">
+            width="350px">
             <Subscribe />{' '}
           </Box>
         </Stack>
